@@ -1,0 +1,50 @@
+
+<form (ngSubmit)="addEmployee()">
+  <input [(ngModel)]="newEmployee.name" name="name" placeholder="Name" required />
+   <input [(ngModel)]="newEmployee.gender" name="gender" placeholder="Gender" required />
+  <input [(ngModel)]="newEmployee.email" name="email" placeholder="Email" required />
+  <input [(ngModel)]="newEmployee.department" name="department" placeholder="Department" required />
+  <button type="submit">Add Employee</button>
+</form>
+
+<hr />
+
+
+<table border="1">
+  <tr>
+    <th>Name</th>
+    <th>Gender</th>
+    <th>Email</th>
+    <th>Department</th>
+    <th>Actions</th>
+  </tr>
+
+
+  <tr *ngFor="let emp of employees">
+    <td *ngIf="editingId !== emp.id">{{ emp.name }}</td>
+    <td *ngIf="editingId === emp.id">
+      <input [(ngModel)]="editedEmployee.name" placeholder="Name">
+    </td>
+     <td *ngIf="editingId !== emp.id">{{ emp.gender }}</td>
+    <td *ngIf="editingId === emp.id">
+      <input [(ngModel)]="editedEmployee.gender" placeholder="Gender">
+    </td>
+
+    <td *ngIf="editingId !== emp.id">{{ emp.email }}</td>
+    <td *ngIf="editingId === emp.id">
+      <input [(ngModel)]="editedEmployee.email" placeholder="Email">
+    </td>
+
+    <td *ngIf="editingId !== emp.id">{{ emp.department }}</td>
+    <td *ngIf="editingId === emp.id">
+      <input [(ngModel)]="editedEmployee.department" placeholder="Department">
+    </td>
+
+    <td>
+      <button *ngIf="editingId !== emp.id" (click)="startEdit(emp)">Edit</button>
+      <button *ngIf="editingId === emp.id" (click)="saveEdit()">Save</button>
+      <button *ngIf="editingId === emp.id" (click)="cancelEdit()">Cancel</button>
+      <button (click)="deleteEmployee(emp.id!)" [disabled]="editingId === emp.id">Delete</button>
+    </td>
+  </tr>
+</table>
