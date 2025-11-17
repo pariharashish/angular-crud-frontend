@@ -19,7 +19,8 @@ import { EmployeeListComponent } from './components/employee-list/employee-list.
   standalone: true,
   imports: [EmployeeListComponent],
   template: `
-    <h1>Employee Management</h1>
+    <h1 class="text-center">Employee Management</h1>
+    <hr />
     <app-employee-list></app-employee-list>
   `
 })
