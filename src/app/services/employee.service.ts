@@ -39,4 +39,6 @@ export interface Employee {
   email: string;
   department: string;
   gender: string;
+  deptType: string;
+
 }

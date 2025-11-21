@@ -1,60 +1,77 @@
 
 <div class="container">
-<form (ngSubmit)="addEmployee()">
-  <div class="row">
-   <div class="col"><input [(ngModel)]="newEmployee.name" name="name" class="form-control" placeholder="Name" ngModel required name/></div>
-   <div class="col"><input [(ngModel)]="newEmployee.gender" name="gender" class="form-control" placeholder="Gender" ngModel required gender/></div>
-  <div class="col"><input [(ngModel)]="newEmployee.email" name="email"  class="form-control" placeholder="Email" ngModel required email/></div>
-  <div class="col"><input [(ngModel)]="newEmployee.department" name="department" class="form-control" placeholder="Department"  ngModel required department/></div>
-  <div class="col"><button type="submit" class="btn btn-primary">Add Employee</button></div>
+  <!-- add employee Form ! -->
+  <form (ngSubmit)="addEmployee()">
+    
+    <div class="row">
+      <div class="col"><input [(ngModel)]="newEmployee.name" name="name" class="form-control" placeholder="Name" ngModel
+          required name /></div>
+      <div class="col"><input [(ngModel)]="newEmployee.email" name="email" class="form-control" placeholder="Email"
+          ngModel required email /></div>
+      <div class="col"><input [(ngModel)]="newEmployee.gender" name="gender" class="form-control" placeholder="Gender"
+          ngModel required gender /></div>
+      <div class="col"><input [(ngModel)]="newEmployee.department" name="department" class="form-control"
+          placeholder="Department" 
+          ngModel required department /></div>
+      <div class="col"><input [(ngModel)]="newEmployee.deptType" name="deptType" class="form-control"
+          placeholder="Department Type" 
+          ngModel required deptType /></div>
+      <div class="col"><button type="submit" class="btn btn-primary">Add Employee</button></div>
+    </div>
+  </form>
 </div>
-</form>
-</div>
+
 <hr />
 <hr />
+
 <div class="table-responsive container">
-<!-- added employee successfully! -->
+  <!-- Tables added employee successfully! -->
   <table class="table table-bordered table-hover">
-  <thead>
-  <tr>
-    <th class="table-dark">ID</th>
-    <th class="table-dark">Name</th>
-    <th class="table-dark">Gender</th>
-    <th class="table-dark">Email</th>
-    <th class="table-dark">Department</th>
-    <th class="table-dark">Actions</th>
-  </tr>
-</thead>
-<tbody>
-  <tr *ngFor="let emp of employees">
-     <td *ngIf="editingId !== emp.id">{{ emp.id }}</td>
-    <td *ngIf="editingId !== emp.id">{{ emp.name }}</td>
-    <td *ngIf="editingId === emp.id">
-      <input [(ngModel)]="editedEmployee.name" placeholder="Name">
-    </td>
-     <td *ngIf="editingId !== emp.id">{{ emp.gender }}</td>
-    <td *ngIf="editingId === emp.id">
-      <input [(ngModel)]="editedEmployee.gender" placeholder="Gender">
-    </td>
+    <thead>
+      <tr>
+        <th class="table-dark">ID</th>
+        <th class="table-dark">Name</th>
+        <th class="table-dark">Gender</th>
+        <th class="table-dark">Email</th>
+        <th class="table-dark">Department</th>
+        <th class="table-dark">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emp of employees">
+        <td *ngIf="editingId !== emp.id">{{ emp.id }}</td>
+        <td *ngIf="editingId !== emp.id">{{ emp.name }}</td>
+        <td *ngIf="editingId === emp.id">
+          <input [(ngModel)]="editedEmployee.name" placeholder="Name">
+        </td>
+        <td *ngIf="editingId !== emp.id">{{ emp.gender }}</td>
+        <td *ngIf="editingId === emp.id">
+          <input [(ngModel)]="editedEmployee.gender" placeholder="Gender">
+        </td>
 
-    <td *ngIf="editingId !== emp.id">{{ emp.email }}</td>
-    <td *ngIf="editingId === emp.id">
-      <input [(ngModel)]="editedEmployee.email" placeholder="Email">
-    </td>
+        <td *ngIf="editingId !== emp.id">{{ emp.email }}</td>
+        <td *ngIf="editingId === emp.id">
+          <input [(ngModel)]="editedEmployee.email" placeholder="Email">
+        </td>
 
-    <td *ngIf="editingId !== emp.id">{{ emp.department }}</td>
-    <td *ngIf="editingId === emp.id">
-      <input [(ngModel)]="editedEmployee.department" placeholder="Department">
-    </td>
+        <td *ngIf="editingId !== emp.id">{{ emp.department }}</td>
+        <td *ngIf="editingId === emp.id">
+          <input [(ngModel)]="editedEmployee.department" placeholder="Department">
+        </td>
+        <td *ngIf="editingId !== emp.id">{{ emp.deptType }}</td>
+        <td *ngIf="editingId === emp.id">
+          <input [(ngModel)]="editedEmployee.deptType" placeholder="Department Type">
+        </td>
 
-    <td>
-      <button class="btn btn-info" *ngIf="editingId !== emp.id" (click)="startEdit(emp)">Edit</button>&nbsp;
-      <button class="btn btn-light" *ngIf="editingId === emp.id" (click)="cancelEdit()">Cancel</button>
-      <button class="btn btn-warning"  (click)="deleteEmployee(emp.id!)" [disabled]="editingId === emp.id">Delete</button>
-    </td>
-  </tr>
-</tbody>
-</table>
+        <td>
+          <button class="btn btn-info" *ngIf="editingId !== emp.id" (click)="startEdit(emp)">Edit</button>&nbsp;
+          <button class="btn btn-light" *ngIf="editingId === emp.id" (click)="cancelEdit()">Cancel</button>
+          <button class="btn btn-warning" (click)="deleteEmployee(emp.id!)"
+            [disabled]="editingId === emp.id">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
 </div>
 

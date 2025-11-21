@@ -12,8 +12,8 @@ import { FormsModule} from '@angular/forms';
 export class EmployeeListComponent {
   employees: Employee[] = [];
   editingId: number | null = null; // track which row is being edited
-  editedEmployee: Employee = { name: '', email: '', department: '',gender:'' }; // temp copy for editing
-  newEmployee: Employee = { name: '', email: '', department: '' ,gender:''};
+  editedEmployee: Employee = { name: '', email: '', gender:'',department: '',deptType: '' }; // temp copy for editing
+  newEmployee: Employee = { name: '', email: '',gender:'', department: '' ,deptType: ''};
   constructor(private service: EmployeeService) {}
 
   ngOnInit() {
@@ -28,7 +28,7 @@ export class EmployeeListComponent {
   addEmployee() {
     this.service.create(this.newEmployee).subscribe(() => {
       this.loadEmployees();
-      this.newEmployee = { name: '', email: '', department: '',gender:'' };
+      this.newEmployee = { name: '', email: '', gender:'' ,department: '',deptType: ''};
     });
   }
 
@@ -49,7 +49,7 @@ export class EmployeeListComponent {
 
   cancelEdit() {
     this.editingId = null;
-    this.editedEmployee = { name: '', email: '', department: '' ,gender:''};
+    this.editedEmployee = { name: '', email: '',gender:'', department: '' ,deptType: ''};
   }
 
   deleteEmployee(id: number) {
