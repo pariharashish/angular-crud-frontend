@@ -11,9 +11,9 @@ import { FormsModule} from '@angular/forms';
 })
 export class EmployeeListComponent {
   employees: Employee[] = [];
-  editingId: number | null = null; // track which row is being edited
-  editedEmployee: Employee = { name: '', email: '', gender:'',department: '',deptType: '' }; // temp copy for editing
-  newEmployee: Employee = { name: '', email: '',gender:'', department: '' ,deptType: ''};
+  editingId: number | null = null; // track which row is being edited //,deptType: '' 
+  editedEmployee: Employee = { name: '', email: '', gender:'',department: '',deptType: ''}; // temp copy for editing
+  newEmployee: Employee = { name: '', email: '',gender:'', department: '',deptType: ''};
   constructor(private service: EmployeeService) {}
 
   ngOnInit() {
